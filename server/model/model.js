@@ -5,7 +5,7 @@ const schema = new mongoose.Schema({
     type: String,
     required: [true, "The name is required."],
     minlength: [3, "too short"],
-    // custom validation
+    unique: true,
   },
   email: {
     type: String,

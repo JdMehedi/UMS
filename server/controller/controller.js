@@ -9,10 +9,9 @@ exports.create = async (req, res) => {
       status: req.body.status,
     });
 
-    const newData = await newCollection.save();
-    res.status(201).send(newData);
+    await newCollection.save();
+    res.redirect("/user/create");
   } catch (error) {
-    // console.log("object");
     res.status(500).send({
       message: error.message,
     });
@@ -26,7 +25,8 @@ exports.find = async (req, res) => {
       res.send({
         data: data,
         message: "Single data is found.",
-      });
+      },
+      );
     } else {
       const data = await userCollection.find();
       res.send({
@@ -41,6 +41,7 @@ exports.find = async (req, res) => {
   }
 };
 exports.update = async (req, res) => {
+  console.log("data: ",req);
   const id = req.params.id;
   try {
     await userCollection.updateOne({ _id: id }, req.body).then((data) => {
