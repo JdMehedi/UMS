@@ -19,9 +19,9 @@
           class="w-full px-6 py-4 bg-white rounded shadow-md ring-1 ring-gray-900/10"
         >
         <% if (users._id) { %>
-          <form method="PUT" action="/api/user/update" id="addUser"></form> 
-        <%} else { %> 
-          <form method="POST" action="/api/user/create" id="addUser"></form>
+          <form method="POST" action="/api/user/update/<%=users._id%>" id="updateUser">
+          <%} else { %> 
+            <form method="POST" action="/api/user/create" id="addUser">
            <% } %>
             <input type="hidden" value="<%=users._id%>" />
             <!-- Title -->
@@ -67,9 +67,8 @@
             <div class="flex items-center justify-start mt-4 gap-x-2">
               <button
                 type="submit"
-                class="px-6 py-2 text-sm font-semibold rounded-md shadow-md text-sky-100 bg-sky-500 hover:bg-sky-700 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300"
-                onclick="submitData(event)"
-              >
+                class="px-6 py-2 text-sm font-semibold rounded-md shadow-md text-sky-100 bg-sky-500 hover:bg-sky-700 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300">
+              <!-- Save -->
                 <% if (users._id) { %> Update <%} else { %> Save <% } %>
               </button>
               <button

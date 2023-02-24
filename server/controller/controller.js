@@ -25,8 +25,7 @@ exports.find = async (req, res) => {
       res.send({
         data: data,
         message: "Single data is found.",
-      },
-      );
+      });
     } else {
       const data = await userCollection.find();
       res.send({
@@ -41,21 +40,16 @@ exports.find = async (req, res) => {
   }
 };
 exports.update = async (req, res) => {
-  console.log("data: ",req);
   const id = req.params.id;
   try {
     await userCollection.updateOne({ _id: id }, req.body).then((data) => {
-      console.log("result:", data);
       if (!data) {
         res.status(400).send({
           message: `Cannot update user with ${id}. user not found.`,
         });
       } else {
-        res.status(200).send({
-          data: data,
-          result: req.body,
-          message: "The data is updated successfully.",
-        });
+        res.redirect("/");
+
       }
     });
   } catch (error) {
@@ -67,6 +61,7 @@ exports.update = async (req, res) => {
 exports.delete = async (req, res) => {
   try {
     const id = req.params.id;
+    console.log("data: ",id);
     const result = await userCollection.deleteOne({ _id: id });
     if (result.deletedCount != 0) {
       res.status(201).send({

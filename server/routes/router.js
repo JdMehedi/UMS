@@ -29,7 +29,7 @@ router.get("/", service.HomeRoutes);
 //API
 router.get("/api/users", controller.find);
 router.post("/api/user/create", controller.create);
-router.put("/api/user/update/:id", controller.update);
+router.post("/api/user/update/:id", controller.update);
 router.delete("/api/user/delete/:id", controller.delete);
 
 module.exports = router;
